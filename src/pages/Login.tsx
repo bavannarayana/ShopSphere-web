@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../customs/useAuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),

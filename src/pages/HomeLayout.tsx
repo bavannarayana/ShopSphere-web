@@ -1,10 +1,14 @@
+import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
 const HomeLayout = () => {
   return (
-    <div className="max-w-310 mx-auto bg-white dark:bg-gray-950 min-h-screen transition-colors duration-300">
-      <NavBar />
-    </div>
+    <main className="bg-white dark:bg-zinc-950 min-h-screen">
+      <div className="max-w-310 mx-auto  transition-colors duration-300">
+        <NavBar />
+        <Outlet />
+      </div>
+    </main>
   );
 };
 

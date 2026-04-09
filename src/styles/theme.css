@@ -1,0 +1,65 @@
+@layer base {
+  :root {
+    /* ===== BACKGROUND ===== */
+    --bg-main: #ffffff;
+    --bg-card: #ffffff;
+
+    /* ===== TEXT ===== */
+    --text-primary: #18181b;
+    --text-secondary: #6b7280;
+
+    /* ===== BORDER ===== */
+    --border-main: #e5e7eb;
+
+    /* ===== INPUT ===== */
+    --input-bg: #ffffff;
+    --input-border: #e5e7eb;
+
+    /* ===== BRAND ===== */
+    --color-brand: #3b82f6;
+    --color-brand-hover: #2563eb;
+
+    /* ===== STATE ===== */
+    --color-error: #ef4444;
+    --color-success: #22c55e;
+  }
+
+  .dark {
+    --bg-main: #09090b;
+    --bg-card: #18181b;
+
+    --text-primary: #e4e4e7;
+    --text-secondary: #a1a1aa;
+
+    --border-main: #27272a;
+
+    --input-bg: #27272a;
+    --input-border: #3f3f46;
+
+    --color-brand: #3b82f6;
+    --color-brand-hover: #2563eb;
+
+    --color-error: #f87171;
+    --color-success: #4ade80;
+  }
+}
+
+/* 🔥 Tailwind v4 Theme Mapping */
+@theme {
+  --color-bg: var(--bg-main);
+  --color-card: var(--bg-card);
+
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+
+  --color-borderMain: var(--border-main);
+
+  --color-inputBg: var(--input-bg);
+  --color-inputBorder: var(--input-border);
+
+  --color-brand: var(--color-brand);
+  --color-brandHover: var(--color-brand-hover);
+
+  --color-error: var(--color-error);
+  --color-success: var(--color-success);
+}

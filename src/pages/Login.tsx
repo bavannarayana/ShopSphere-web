@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../customs/useAuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+import useTheme from "../hooks/useTheme";
+import { PiMoonBold, PiSunBold } from "react-icons/pi";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -15,6 +17,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useAuthContext();
+  const { darkMode, toggleTheme } = useTheme();
 
   const {
     handleSubmit,
@@ -36,75 +39,94 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-violet-100 via-white to-purple-100 px-4">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8 space-y-5"
-      >
-        {/* Logo / Title */}
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-blue-400">ShopSphere</h1>
-          <p className="text-gray-500 text-sm mt-1">Welcome back 👋</p>
-        </div>
+    <div
+      className="min-h-screen flex flex-col 
+      bg-linear-to-br from-violet-100 via-white to-purple-100 dark:from-zinc-950 dark:via-zinc-900 dark:to-black text-primary"
+    >
+      {/* Header / Fake Navbar */}
+      <header className="w-full ">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 border-b border-borderMain">
+          <img src="/assets/Logo.png" className="h-10" />
 
-        {/* Heading */}
-        <h2 className="text-xl font-semibold text-center text-gray-800">
-          Login to your account
-        </h2>
-
-        {/* Email */}
-        <div className="space-y-1">
-          <input
-            type="text"
-            {...register("email")}
-            placeholder="Email Address"
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400 transition"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
-        </div>
-
-        {/* Password */}
-        <div className="space-y-1">
-          <input
-            type="password"
-            {...register("password")}
-            placeholder="Password"
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400 transition"
-          />
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
-          )}
-        </div>
-
-        {/* Forgot Password */}
-        <div className="flex justify-end">
-          <button
-            type="button"
-            className="text-sm text-blue-500 hover:underline hover:cursor-pointer"
-          >
-            Forgot password?
+          <button onClick={toggleTheme}>
+            {darkMode ? <PiSunBold size={20} /> : <PiMoonBold size={20} />}
           </button>
         </div>
+      </header>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-blue-400 hover:bg-blue-500 transition text-white py-2 rounded-lg font-medium disabled:opacity-50"
+      {/* Main Content */}
+      <main className="flex-1 flex items-center justify-center px-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-md bg-card shadow-xl rounded-2xl p-6 sm:p-8 space-y-5 border border-borderMain"
         >
-          {isSubmitting ? "Logging in..." : "Login"}
-        </button>
+          {/* Heading */}
+          <div className="text-center">
+            <h1 className="text-xl sm:text-2xl font-bold text-brand">
+              ShopSphere
+            </h1>
 
-        {/* Footer */}
-        <p className="text-center text-sm text-gray-500">
-          Don’t have an account?{" "}
-          <span className="text-blue-500 cursor-pointer hover:underline">
-            Sign up
-          </span>
-        </p>
-      </form>
+            <h2 className="text-xl sm:text-2xl font-semibold text-primary">
+              Login to your account
+            </h2>
+
+            <p className="text-secondary text-sm mt-1">Welcome back 👋</p>
+          </div>
+
+          {/* Email */}
+          <div className="space-y-1">
+            <input
+              type="text"
+              {...register("email")}
+              placeholder="Email Address"
+              className="w-full px-4 py-2 border border-inputBorder bg-inputBg text-primary rounded-lg focus:outline-none focus:ring-1 focus:ring-brand transition"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+
+          {/* Password */}
+          <div className="space-y-1">
+            <input
+              type="password"
+              {...register("password")}
+              placeholder="Password"
+              className="w-full px-4 py-2 border border-inputBorder bg-inputBg text-primary rounded-lg focus:outline-none focus:ring-1 focus:ring-brand transition"
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+          </div>
+
+          {/* Forgot Password */}
+          <div className="flex justify-end">
+            <button
+              type="button"
+              className="text-sm text-brand hover:underline"
+            >
+              Forgot password?
+            </button>
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-brand hover:bg-brandHover transition text-white py-2 rounded-lg font-medium disabled:opacity-50"
+          >
+            {isSubmitting ? "Logging in..." : "Login"}
+          </button>
+
+          {/* Footer */}
+          <p className="text-center text-sm text-secondary">
+            Don’t have an account?{" "}
+            <span className="text-brand cursor-pointer hover:underline">
+              Sign up
+            </span>
+          </p>
+        </form>
+      </main>
     </div>
   );
 };

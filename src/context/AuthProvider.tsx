@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        setLoading(true);
         const res = await api.get("/auth/me");
         setUser(res.data.data.user);
       } catch {
@@ -17,10 +18,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setLoading(false);
       }
     };
-
     checkAuth();
   }, []);
-
   return (
     <AuthContext.Provider value={{ user, setUser, loading }}>
       {children}

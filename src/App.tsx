@@ -5,26 +5,31 @@ import { AuthProvider } from "./context/AuthProvider";
 import { lazy } from "react";
 import PublicRoutes from "./routes/PublicRoutes";
 import ThemeProvider from "./context/ThemeProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const HomeLayout = lazy(() => import("./pages/HomeLayout"));
 const Products = lazy(() => import("./components/Products"));
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <ThemeProvider>
-          <Routes>
-            <Route element={<PublicRoutes />}>
-              <Route path="/" element={<Login />} />
-              <Route path="/login" element={<Login />} />
-            </Route>
-            <Route element={<ProtectedRoutes />}>
-              <Route element={<HomeLayout />}>
-                <Route path="/dashboard" element={<Products />} />
+          <QueryClientProvider client={queryClient}>
+            <Routes>
+              <Route element={<PublicRoutes />}>
+                <Route path="/" element={<Login />} />
+                <Route path="/login" element={<Login />} />
               </Route>
-            </Route>
-          </Routes>
+              <Route element={<ProtectedRoutes />}>
+                <Route element={<HomeLayout />}>
+                  <Route path="/dashboard" element={<Products />} />
+                </Route>
+              </Route>
+            </Routes>
+          </QueryClientProvider>
         </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>

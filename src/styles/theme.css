@@ -2,7 +2,7 @@
   :root {
     /* ===== BACKGROUND ===== */
     --bg-main: #ffffff;
-    --bg-card: #ffffff;
+    --bg-card: #f3f4f6;
 
     /* ===== TEXT ===== */
     --text-primary: #18181b;
@@ -22,6 +22,19 @@
     /* ===== STATE ===== */
     --color-error: #ef4444;
     --color-success: #22c55e;
+
+    /* ===== BUTTONS ===== */
+    --btn-primary: #3b82f6;
+    --btn-primary-hover: #2563eb;
+
+    --btn-success: #22c55e;
+    --btn-success-hover: #16a34a;
+
+    --btn-danger: #ef4444;
+    --btn-danger-hover: #dc2626;
+
+    --btn-neutral: #e5e7eb;
+    --btn-neutral-hover: #d1d5db;
   }
 
   .dark {
@@ -41,6 +54,18 @@
 
     --color-error: #f87171;
     --color-success: #4ade80;
+
+    --btn-primary: #3b82f6;
+    --btn-primary-hover: #60a5fa;
+
+    --btn-success: #4ade80;
+    --btn-success-hover: #22c55e;
+
+    --btn-danger: #f87171;
+    --btn-danger-hover: #ef4444;
+
+    --btn-neutral: #27272a;
+    --btn-neutral-hover: #3f3f46;
   }
 }
 

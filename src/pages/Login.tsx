@@ -5,7 +5,6 @@ import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import useTheme from "../hooks/useTheme";
-import { PiMoonBold, PiSunBold } from "react-icons/pi";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -46,10 +45,15 @@ const Login = () => {
       {/* Header / Fake Navbar */}
       <header className="w-full ">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 border-b border-borderMain">
-          <img src="/assets/Logo.png" className="h-10" />
+          <img
+            src="/assets/Logo.webp"
+            alt="brand-logo"
+            aria-label="brand logo"
+            className="h-10"
+          />
 
           <button onClick={toggleTheme}>
-            {darkMode ? <PiSunBold size={20} /> : <PiMoonBold size={20} />}
+            {darkMode ? <p>☀️</p> : <p>🌙</p>}
           </button>
         </div>
       </header>
